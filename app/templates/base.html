@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>Tech</li>
+                <li> Finance</li>
+                <li>Health</li>
+                <li>Bussih</li>
+            </ul>
+        </nav>
+    </header>
+    <h1>News App</h1>
+    {% for article in news %}
+    <div class="bg-white p-4 rounded shadow">
+        <img src="{{ article.urlToImage }}" class="rounded mb-2">
+        <h2 class="font-bold text-lg">{{ article.title }}</h2>
+        <p class="text-sm">{{ article.description }}</p>
+        <a href="{{ article.url }}" class="text-blue-500">Read more</a>
+    </div>
+    {% endfor %}
+    
+</body>
+</html>
