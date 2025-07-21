@@ -8,6 +8,7 @@ from app.services.news_service import fetch_top_headlines, search_news
 
 app = FastAPI()
 
+
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
