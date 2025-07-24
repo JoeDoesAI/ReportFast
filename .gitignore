@@ -1,5 +1,5 @@
 venv
 
-commands.txt
+commands.md
 .env
-•.code-workspace
+**/*.code-workspace
