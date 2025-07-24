@@ -8,25 +8,62 @@
     <header class="bg-white w-full h-24 shadow-xl/30 flex items-center justify-center px-10">
         <nav class="flex flex-row items-center space-x-10">
             <h1 class="text-4xl font-bold" >Report Fast</h1>
-            <ul class="flex flex-row space-x-6 text-gray-700">
-                <li>Tech</li>
-                <li>Finance</li>
-                <li>Health</li>
-                <li>Bussiness</li>
+            <ul class="flex flex-row space-x-6 text-gray-700 p-3">
+                <li class = "text-l hover:text-blue-600 hover:cursor-pointer" onclick="loadNews('technology')">Tech</li>
+                <li class = "hover:text-blue-600 hover:cursor:pointer" onclick="loadNews('finance')">Finance</li>
+                <li class = "hover:text-blue-600 hover:cursor:pointer" onclick="loadNews('health')">Health</li>
+                <li class = "hover:text-blue-600 hover:cursor-pointer" onclick="loadNews('business')">Bussiness</li>
             </ul>
+
             <form action=""></form>
+
+            <div class="max-w-lg mx-auto">
+                <form class="flex items-center border border-gray-300 rounded-lg shadow-sm" action="">
+                    <input type="text" placeholder="Search news..." class="w-full px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-r-lg hover:bg-blue-700">
+                        Search
+                    </button>
+                </form>
+            </div>
+
         </nav>
+
     </header>
    <div class="container mx-auto p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {% for article in news %}
-        <div class="bg-white p-4 rounded shadow">
+        <div class="news-container bg-white p-4 rounded shadow">
             <img src="{{ article.urlToImage }}" class="rounded mb-2">
             <h2 class="font-bold text-lg">{{ article.title }}</h2>
-            <p class="text-sm">{{ article.description }}</p>
+            <!-- <p class="text-sm">{{ article.description }}</p> -->
             <a href="{{ article.url }}" class="text-blue-500">Read more</a>
         </div>
         {% endfor %}
    </div>
+
+   <script>
+        async function loadNews(category) {
+            const response = await fetch(`/api/news?category=${category}`);
+            const data = await response.json();
+            console.log(data);
+
+            const container = document.getElementById("news-container");
+            container.innerHTML = ""; // Clear old news
+
+            data.articles.forEach(article => {
+                const card = `
+                <div class="bg-white p-4 rounded shadow">
+                    <img src="${article.urlToImage || ''}" class="rounded mb-2">
+                    <h2 class="font-bold text-lg">${article.title}</h2>
+                    <a href="${article.url}" target="_blank" class="text-blue-500">Read more</a>
+                </div>
+                `;
+                container.innerHTML += card;
+            });
+        }
+        </script>
+
+
+
     
 </body>
 </html>
