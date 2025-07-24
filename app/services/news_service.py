@@ -3,7 +3,7 @@ from app.config import NEWS_API_KEY
 
 BASE_URL = "https://newsapi.org/v2"
 
-def fetch_top_headlines(country="us", category="technology", page_size=10):
+def fetch_top_headlines(country="us", category="business", page_size=10):
     url = f"{BASE_URL}/top-headlines"
     params = {
         "country": country,
