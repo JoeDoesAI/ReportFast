@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse,JSONResponse
 
 from app.config import TEMPLATES_DIR, STATIC_DIR
-from app.services.news_service import fetch_top_headlines, search_news
+from app.services.news_service import fetch_top_headlines, search_for_news
 
 app = FastAPI()
 
@@ -14,8 +14,7 @@ app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
 
 @app.get("/", response_class=HTMLResponse)
-def home(request: Request, q: str = Query(default=None)):
-    
+def home(request: Request):
     news_articles = fetch_top_headlines(country="us",category="business")
     return templates.TemplateResponse("base.html", {"request": request, "news": news_articles})
 
@@ -23,4 +22,10 @@ def home(request: Request, q: str = Query(default=None)):
 @app.get("/api/news")
 def get_news(category: str = Query(default="technology")):
     news_articles = fetch_top_headlines(category=category)
+    return {"articles": news_articles}
+
+
+@app.get("/search", response_class=HTMLResponse)
+def search_news(query: str = Query(default="technology")):
+    news_articles = search_for_news(query=query)
     return {"articles": news_articles}

@@ -18,14 +18,17 @@ def fetch_top_headlines(country="us", category="business", page_size=10):
 
 
 
-def search_news(query, page_size=10):
+def search_for_news(query, page_size=10):
     url = f"{BASE_URL}/everything"
+    
     params = {
         "q": query,
         "pageSize": page_size,
         "apiKey": NEWS_API_KEY
     }
+    
     response = requests.get(url, params=params)
+    
     response.raise_for_status()
     data = response.json()
     return data.get("articles", [])
