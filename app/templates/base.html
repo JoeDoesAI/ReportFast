@@ -38,9 +38,9 @@
     <div id="news-container" class="container mx-auto p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {% for article in articles %}
             <div class="bg-white p-4 rounded shadow">
-                <img src="{{ article.url_to_image }}" class="rounded mb-2">
-                <h2 class="font-bold text-lg">{{ article.title }}</h2>
-                <a href="{{ article.url }}" class="text-blue-500">Read more</a>
+                <img src="{{ article.url_to_image }}" alt="{{ article.urlToImage}}" class="rounded mb-2">
+                <h2 class="font-bold text-lg">{{ article.news_title }}</h2>
+                <a href="{{ article.news_url }}" class="text-blue-500">Read more</a>
             </div>
         {% endfor %}
     </div>
@@ -61,9 +61,9 @@
             data.forEach(article => {
                 container.innerHTML += `
                     <div class="bg-white p-4 rounded shadow">
-                        <img src="${article.image}" class="rounded mb-2">
-                        <h2 class="font-bold text-lg">${article.title}</h2>
-                        <a href="${article.url}" target="_blank" class="text-blue-500">Read more</a>
+                        <img src="${article.url_to_image}" class="rounded mb-2">
+                        <h2 class="font-bold text-lg">${article.news_title}</h2>
+                        <a href="${article.news_url}" target="_blank" class="text-blue-500">Read more</a>
                     </div>
                 `;
             });
@@ -89,9 +89,9 @@
             data.forEach(article => {
                 container.innerHTML += `
                     <div class="bg-white p-4 rounded shadow">
-                        <img src="${article.image}" class="rounded mb-2">
-                        <h2 class="font-bold text-lg">${article.title}</h2>
-                        <a href="${article.url}" target="_blank" class="text-blue-500">Read more</a>
+                        <img src="${article.url_to_image}"  class="rounded mb-2">
+                        <h2 class="font-bold text-lg">${article.news_title}</h2>
+                        <a href="${article.news_url}" target="_blank" class="text-blue-500">Read more</a>
                     </div>
                 `;
             });

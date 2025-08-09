@@ -1,6 +1,6 @@
-venv
+venv/
 
-news.db
+.db
 commands.md
 .env
 **/*.code-workspace

@@ -8,7 +8,7 @@ def get_articles_by_category(db: Session,category: str):
     try:
         articles = (
             db.query(Article)
-            .filter(Article.category == category)
+            .filter(Article.news_category == category)
             .order_by(Article.published_at.desc())
             .limit(20)
             .all()
@@ -24,8 +24,8 @@ def search_for_news(db:Session,query: str):
         db.query(Article)
         .filter(
             or_(
-                Article.title.ilike(f"%{query}%"),
-                Article.description.ilike(f"%{query}%"),
+                Article.news_title.ilike(f"%{query}%"),
+                Article.news_description.ilike(f"%{query}%"),
             )
         )
         .order_by(Article.published_at.desc())
@@ -39,7 +39,7 @@ def search_for_news(db:Session,query: str):
 
 def save_article(db: Session, article_data: dict):
     
-    existing_article = db.query(Article).filter(Article.url == article_data["url"]).first()
+    existing_article = db.query(Article).filter(Article.news_url == article_data["news_url"]).first()
     if existing_article:
         return  
     

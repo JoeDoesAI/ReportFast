@@ -37,18 +37,18 @@ def save_all_news(categories):
         
         for article in articles:
             article_data = {
-                "title": article.get("title"),
-                "description": article.get("description"),
+                "news_title": article.get("title"),
+                "news_description": article.get("description"),
                 "url_to_image": article.get("urlToImage"),
-                "url": article.get("url"),
+                "news_url": article.get("url"),
                 "published_at": parse_datetime(article.get("publishedAt")),
-                "category": category
+                "news_category": category
             }
             save_article(db, article_data)
     db.close()
 
     
-def search_for_news(query, page_size=10):
+def search_api_news(query, page_size=10):
     url = f"{BASE_URL}/everything"
     
     params = {

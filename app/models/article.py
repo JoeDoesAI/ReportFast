@@ -8,10 +8,10 @@ class Article(Base):
     __tablename__ = "articles"
 
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String, nullable=False)
-    description = Column(Text, nullable=True)
-    url = Column(String, unique=True, nullable=False)
+    news_title = Column(String, nullable=False)
+    news_description = Column(Text, nullable=True)
+    news_url = Column(String, unique=True, nullable=False)
     url_to_image = Column(String, nullable=True)
     published_at = Column(DateTime)
     source = Column(String, nullable=True)
-    category = Column(String, nullable=True)
+    news_category = Column(String, nullable=True)
