@@ -1,11 +1,14 @@
+#ignore venv
 venv/
 
-
-#ignore databse files
+#ignore databse file
 news.db
 
-#ignore command files
-commands.md
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
 
+# Ignore environment variables file
 .env
 my_news_app.code-workspace
