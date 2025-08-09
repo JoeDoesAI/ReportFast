@@ -1,6 +1,11 @@
 venv/
 
-.db
+
+#ignore databse files
+news.db
+
+#ignore command files
 commands.md
+
 .env
-**/*.code-workspace
+my_news_app.code-workspace
