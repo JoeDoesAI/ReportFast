@@ -10,6 +10,8 @@ NEWS_API_KEY = os.getenv("NEWS_API_KEY")
 
 DATABASE_URL = "sqlite:///./news.db"
 
+DEFAULT_ARTICLE_IMAGE = "/app/images/logo.jpg"
+
 # Base directory (root of the project)
 BASE_DIR = Path(__file__).resolve().parent.parent
 

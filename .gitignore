@@ -12,3 +12,7 @@ __pycache__/
 # Ignore environment variables file
 .env
 my_news_app.code-workspace
+
+
+#ignore image
+images/
