@@ -1,0 +1,25 @@
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Text
+from sqlalchemy.orm import relationship
+from app import db  # assuming you already set up db = SQLAlchemy(app)
+
+
+class Category(db.Model):
+    __tablename__ = "categories"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50), unique=True, nullable=False)
+
+    # one-to-many relationship
+    news = relationship("Article", back_populates="category")
+
+
+
+
+class UserPreference(db.Model):
+    __tablename__ = "user_preferences"
+
+    id = Column(Integer, primary_key=True)
+    user_token = Column(String(255), nullable=False)  # session/device ID
+    category_id = Column(Integer, ForeignKey("categories.id"), nullable=False)
+
+    category = relationship("Category")

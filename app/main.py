@@ -30,15 +30,23 @@ app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
-    db = SessionLocal()
+    # db = SessionLocal()
 
-    try:
-        articles = db.query(Article).order_by(Article.published_at.desc()).limit(20).all()
-    finally:
-        db.close()
+    # try:
+    #     articles = db.query(Article).order_by(Article.published_at.desc()).limit(20).all()
+    # finally:
+    #     db.close()
+    
+    categories = ["Health",
+                  "Sports",
+                  "Education",
+                  "Bussines",
+                  "Entertainment", 
+                  "Technology",
+                  "Politics"]
 
     return templates.TemplateResponse(
-        "base.html",
-        {"request": request, "articles": articles}
+        "home.html",
+        {"request": request, "categories": categories}
     )
 
